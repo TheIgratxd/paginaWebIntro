@@ -1,13 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap");
+@font-face {
+  font-family: "Minecraft";
+  src: url("/paginaWebIntro/Minecraft.ttf") format("truetype");
+  font-display: swap;
+}
 
 :root {
-  --ink: #17251e;
-  --forest: #234b38;
-  --moss: #789b54;
-  --cream: #f4efdf;
-  --orange: #e96b3d;
-  --line: #d6d2c0;
-  --muted: #69776c;
+  --minecraft-font: "Minecraft", monospace;
+  --ink: #f1f1f1;
+  --forest: #77b82a;
+  --moss: #9acb45;
+  --grass: #5c9223;
+  --dirt: #252525;
+  --stone: #777777;
+  --sky: #202020;
+  --water: #4e8eaa;
+  --cream: #111111;
+  --line: #3d3d3d;
+  --muted: #b5b5b5;
 }
 * {
   box-sizing: border-box;
@@ -18,7 +27,8 @@ html {
 main {
   overflow: hidden;
   color: var(--ink);
-  background: var(--cream);
+  font-family: var(--minecraft-font);
+  background: #111;
 }
 a {
   color: inherit;
@@ -30,14 +40,15 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--line);
+  background: #1b1b1b;
+  border-bottom: 1px solid #3b3b3b;
   font:
     11px "DM Mono",
     monospace;
   letter-spacing: 0.06em;
 }
 .brand {
-  color: var(--forest);
+  color: var(--ink);
   font-weight: 500;
 }
 .brand-mark {
@@ -46,9 +57,10 @@ a {
   margin-right: 8px;
   width: 22px;
   height: 22px;
-  color: var(--cream);
-  background: var(--orange);
+  color: #111;
+  background: var(--forest);
   font-size: 12px;
+  box-shadow: 3px 3px 0 #000;
 }
 .nav-links {
   display: flex;
@@ -57,10 +69,10 @@ a {
 }
 .nav-links a:hover,
 footer a:hover {
-  color: var(--orange);
+  color: var(--forest);
 }
 .edition {
-  color: var(--orange);
+  color: var(--forest);
 }
 .hero-section {
   min-height: 650px;
@@ -70,12 +82,13 @@ footer a:hover {
   gap: 40px;
   align-items: center;
   background:
-    radial-gradient(circle at 80% 20%, #e7dcc2 0 16%, transparent 17%),
-    var(--cream);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px), #111;
+  background-size: 32px 32px;
 }
 .eyebrow {
   margin: 0 0 18px;
-  color: var(--orange);
+  color: var(--forest);
   font:
     11px "DM Mono",
     monospace;
@@ -89,8 +102,8 @@ p {
 }
 h1,
 h2 {
-  color: var(--forest);
-  font-family: "Syne", sans-serif;
+  color: var(--ink);
+  font-family: var(--minecraft-font);
   line-height: 0.92;
   letter-spacing: -0.05em;
 }
@@ -103,7 +116,7 @@ h2 {
   font-size: clamp(44px, 6vw, 76px);
 }
 em {
-  color: var(--orange);
+  color: var(--forest);
   font-style: normal;
 }
 .hero-text,
@@ -120,8 +133,10 @@ em {
   gap: 22px;
   margin-top: 24px;
   padding: 15px 20px;
-  color: var(--cream);
+  color: #111;
   background: var(--forest);
+  border: 0;
+  box-shadow: 4px 4px 0 #000;
   font:
     11px "DM Mono",
     monospace;
@@ -130,108 +145,80 @@ em {
     background 0.2s;
 }
 .primary-button span {
-  color: #f4b34f;
+  color: #111;
   font-size: 18px;
 }
 .primary-button:hover {
-  background: var(--orange);
-  transform: translateY(-3px);
+  background: var(--moss);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
 }
 .hero-art {
   position: relative;
   min-height: 470px;
   overflow: hidden;
-  background: #d1dbc3;
-  border: 1px solid #b8c6a9;
-  box-shadow: 18px 18px 0 #e8dcc2;
+  background: #050505;
+  border: 1px solid #484848;
+  box-shadow: 14px 14px 0 #000;
 }
-.sun {
+.image-slot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--ink);
+  background-color: #292929;
+  border: 1px solid #555;
+  text-align: center;
+  font: 10px/1.5 var(--minecraft-font);
+  letter-spacing: 0.04em;
+}
+.image-slot::before,
+.image-slot::after {
   position: absolute;
-  top: 58px;
-  right: 23%;
-  width: 125px;
-  height: 125px;
-  background: #f5bd55;
-  border-radius: 50%;
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-color: var(--forest);
+  border-style: solid;
 }
-.mountain {
+.image-slot::before {
+  top: 8px;
+  left: 8px;
+  border-width: 3px 0 0 3px;
+}
+.image-slot::after {
+  right: 8px;
+  bottom: 8px;
+  border-width: 0 3px 3px 0;
+}
+.image-slot img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.hero-image-slot {
   position: absolute;
-  bottom: 110px;
-  width: 0;
-  height: 0;
-  border-left: 240px solid transparent;
-  border-right: 240px solid transparent;
-  border-bottom: 270px solid #8fa66f;
+  z-index: 1;
+  inset: 18px;
+  background: #050505;
+  border-color: #555;
 }
-.mountain-back {
-  left: -70px;
-  border-bottom-color: #a9b98d;
-}
-.mountain-front {
-  right: -130px;
-  border-bottom-color: #6f8d57;
-}
-.portal {
-  position: absolute;
-  z-index: 2;
-  bottom: 68px;
-  left: 50%;
-  width: 150px;
-  height: 240px;
-  transform: translateX(-50%);
-  border: 20px solid #30275b;
-  border-bottom-width: 0;
-  background: repeating-linear-gradient(
-    125deg,
-    #6f3fa2 0 13px,
-    #9b65bd 14px 26px
-  );
-  box-shadow: 0 0 35px #8a6fb8;
-}
-.portal-glow {
-  position: absolute;
-  inset: 15px;
-  background: rgba(25, 21, 58, 0.35);
-}
-.grass-block {
-  position: absolute;
-  z-index: 3;
-  bottom: 0;
-  width: 150px;
-  height: 100px;
-  background: linear-gradient(#709d53 0 22%, #8e633e 22%);
-  border: 8px solid rgba(31, 65, 46, 0.2);
-}
-.block-one {
-  left: 8%;
-  transform: rotate(-5deg);
-}
-.block-two {
-  right: 7%;
-  height: 130px;
-  transform: rotate(6deg);
-}
-.coordinates {
-  position: absolute;
-  z-index: 4;
-  bottom: 16px;
-  left: 18px;
-  color: #eef1d6;
-  font:
-    10px "DM Mono",
-    monospace;
+.hero-image-slot img {
+  object-position: center;
 }
 .intro-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 24px 9vw;
-  color: var(--cream);
-  background: var(--forest);
+  color: var(--ink);
+  background: #1d1d1d;
 }
 .intro-strip p {
   margin: 0;
   padding-left: 25px;
-  border-right: 1px solid rgba(244, 239, 223, 0.3);
+  border-right: 1px solid #454545;
   font:
     12px/1.6 "DM Mono",
     monospace;
@@ -243,16 +230,21 @@ em {
   border: 0;
 }
 .intro-strip strong {
-  color: #f3b450;
+  color: var(--forest);
   font-size: 10px;
   letter-spacing: 0.1em;
 }
 .difficulty {
-  color: #ef9b57;
+  color: var(--forest);
   letter-spacing: 3px;
 }
 .content-section {
   padding: 125px 9vw;
+  background: #151515;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 .section-heading {
   display: grid;
@@ -271,11 +263,13 @@ em {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--line);
+  background: #202020;
 }
 .step-card {
   min-height: 275px;
   padding: 26px 22px 25px 0;
   border-right: 1px solid var(--line);
+  box-shadow: inset 0 -5px 0 var(--stone);
 }
 .step-card + .step-card {
   padding-left: 22px;
@@ -284,7 +278,7 @@ em {
   border: 0;
 }
 .step-number {
-  color: var(--orange);
+  color: var(--forest);
   font:
     12px "DM Mono",
     monospace;
@@ -294,14 +288,19 @@ em {
   color: var(--moss);
   font-size: 24px;
 }
+.step-image-slot {
+  width: 100%;
+  height: 92px;
+  margin-top: 18px;
+  background: #292929;
+  border-color: #555;
+}
 .step-card h3 {
   clear: both;
   max-width: 170px;
   margin: 45px 0 12px;
-  color: var(--forest);
-  font:
-    700 19px "Space Grotesk",
-    sans-serif;
+  color: var(--ink);
+  font: 700 19px var(--minecraft-font);
 }
 .step-card p {
   max-width: 210px;
@@ -313,55 +312,82 @@ em {
   display: inline-block;
   margin-top: 19px;
   padding: 5px 7px;
-  color: var(--forest);
-  background: #dce4cc;
+  color: #111;
+  background: var(--forest);
   font:
     9px "DM Mono",
     monospace;
   letter-spacing: 0.08em;
 }
 .final-step .tag {
-  color: var(--cream);
-  background: var(--orange);
+  color: #111;
+  background: var(--moss);
 }
 .survival-section {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 9vw;
-  padding: 90px 14vw;
-  color: var(--cream);
-  background: var(--orange);
+  grid-template-columns: minmax(260px, 1fr) minmax(280px, 1.15fr) minmax(
+      280px,
+      1.35fr
+    );
+  gap: 3vw;
+  padding: 90px 6vw;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    #262626;
+  background-size: 32px 32px;
+}
+.inventory-image-slot {
+  width: 100%;
+  min-width: 0;
+  min-height: 260px;
+  background: #111;
+  border-color: #666;
+  box-shadow: 8px 8px 0 #000;
+}
+.inventory-image-slot img {
+  object-fit: contain;
+  background: #111;
+}
+.inventory-image-slot::before,
+.inventory-image-slot::after {
+  border-color: var(--forest);
 }
 .survival-copy h2 {
-  color: var(--cream);
+  color: var(--ink);
+  max-width: 100%;
+  font-size: clamp(42px, 5vw, 68px);
+  overflow-wrap: normal;
 }
 .survival-copy em {
-  color: #f7c764;
+  color: var(--forest);
 }
 .survival-copy > p:last-child {
-  color: #ffe4cb;
+  color: var(--muted);
 }
 .checklist {
   align-self: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: rgba(82, 44, 31, 0.3);
+  background: #101010;
+  border: 1px solid #555;
 }
 .check-item {
   display: flex;
   gap: 15px;
   min-height: 116px;
   padding: 20px;
-  background: var(--orange);
+  background: #2b2b2b;
 }
 .check-item > span {
   display: grid;
   flex: 0 0 24px;
   place-items: center;
   height: 24px;
-  color: var(--orange);
-  background: #f7d06a;
+  color: #111;
+  background: var(--forest);
   font-weight: 700;
 }
 .check-item strong,
@@ -370,12 +396,10 @@ em {
 }
 .check-item strong {
   margin-bottom: 8px;
-  font:
-    600 14px "Space Grotesk",
-    sans-serif;
+  font: 600 14px var(--minecraft-font);
 }
 .check-item small {
-  color: #ffe4cb;
+  color: var(--muted);
   font:
     10px "DM Mono",
     monospace;
@@ -386,6 +410,7 @@ em {
   grid-template-columns: 1fr 1fr;
   gap: 10vw;
   padding: 125px 14vw;
+  background: #111;
 }
 .credit-details {
   display: grid;
@@ -400,31 +425,29 @@ em {
   border-bottom: 1px solid var(--line);
 }
 .credit-details span {
-  color: var(--orange);
+  color: var(--forest);
   font:
     10px "DM Mono",
     monospace;
 }
 .credit-details strong {
-  color: var(--forest);
-  font:
-    500 14px "Space Grotesk",
-    sans-serif;
+  color: var(--ink);
+  font: 500 14px var(--minecraft-font);
   text-align: right;
 }
 footer {
   display: flex;
   justify-content: space-between;
   padding: 22px 6vw;
-  color: #b9c6a7;
-  background: var(--forest);
+  color: #a4a4a4;
+  background: #1b1b1b;
   font:
     10px "DM Mono",
     monospace;
   letter-spacing: 0.06em;
 }
 footer a {
-  color: #f3b450;
+  color: var(--forest);
 }
 @media (max-width: 800px) {
   .topbar {
@@ -480,6 +503,12 @@ footer a {
     gap: 40px;
     padding: 75px 22px;
   }
+  .survival-section {
+    grid-template-columns: 1fr;
+  }
+  .inventory-image-slot {
+    min-height: 220px;
+  }
   .check-item {
     min-height: 135px;
     padding: 15px;
@@ -494,13 +523,8 @@ footer a {
   .hero-art {
     min-height: 330px;
   }
-  .portal {
-    transform: translateX(-50%) scale(0.8);
-    transform-origin: bottom;
-  }
-  .mountain {
-    transform: scale(0.75);
-    transform-origin: bottom;
+  .hero-image-slot {
+    inset: 12px;
   }
   .steps {
     grid-template-columns: 1fr;

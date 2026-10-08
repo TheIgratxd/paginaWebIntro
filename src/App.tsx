@@ -1,6 +1,9 @@
 import "./App.css";
 
 function App() {
+  const assetPath = (fileName: string) =>
+    `${import.meta.env.BASE_URL}${fileName}`;
+
   return (
     <main>
       <nav className="topbar" aria-label="Navegación principal">
@@ -36,15 +39,9 @@ function App() {
           aria-label="Ilustración de un portal al End"
           role="img"
         >
-          <div className="sun"></div>
-          <div className="mountain mountain-back"></div>
-          <div className="mountain mountain-front"></div>
-          <div className="portal">
-            <div className="portal-glow"></div>
+          <div className="image-slot hero-image-slot">
+            <img src={assetPath("images (4).jpg")} alt="Portal del End" />
           </div>
-          <div className="grass-block block-one"></div>
-          <div className="grass-block block-two"></div>
-          <span className="coordinates">X: 248 / Y: 64 / Z: -912</span>
         </div>
       </section>
 
@@ -87,6 +84,9 @@ function App() {
           <article className="step-card">
             <span className="step-number">01</span>
             <span className="step-icon">▦</span>
+            <div className="image-slot step-image-slot">
+              <img src={assetPath("images.jpg")} alt="Noche en Minecraft" />
+            </div>
             <h3>Sobrevive la primera noche</h3>
             <p>
               Consigue madera, herramientas de piedra, comida y construye un
@@ -97,6 +97,12 @@ function App() {
           <article className="step-card">
             <span className="step-number">02</span>
             <span className="step-icon">◈</span>
+            <div className="image-slot step-image-slot">
+              <img
+                src={assetPath("images (1).jpg")}
+                alt="Diamantes en una mina"
+              />
+            </div>
             <h3>Encuentra diamantes</h3>
             <p>
               Baja a las capas profundas, consigue hierro y diamantes. Fabrica
@@ -107,6 +113,9 @@ function App() {
           <article className="step-card">
             <span className="step-number">03</span>
             <span className="step-icon">◉</span>
+            <div className="image-slot step-image-slot">
+              <img src={assetPath("images (2).jpg")} alt="Paisaje del Nether" />
+            </div>
             <h3>Entra al Nether</h3>
             <p>
               Construye un portal, consigue varas de blaze y perlas de Ender
@@ -117,6 +126,12 @@ function App() {
           <article className="step-card final-step">
             <span className="step-number">04</span>
             <span className="step-icon">✦</span>
+            <div className="image-slot step-image-slot">
+              <img
+                src={assetPath("End_portal.jpg")}
+                alt="Portal del End activado"
+              />
+            </div>
             <h3>Activa el portal y vence</h3>
             <p>
               Usa los Ojos de Ender para encontrar la fortaleza. Activa el
@@ -139,6 +154,12 @@ function App() {
             Revisa esta lista antes del combate final. El dragón no espera a
             nadie.
           </p>
+        </div>
+        <div className="image-slot inventory-image-slot">
+          <img
+            src={assetPath("images (3).jpg")}
+            alt="Inventario de Minecraft"
+          />
         </div>
         <div className="checklist">
           <div className="check-item">
